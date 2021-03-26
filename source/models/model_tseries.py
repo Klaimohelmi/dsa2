@@ -40,8 +40,27 @@ def reset():
     model, session = None, None
 
 ####################################################################################################
+model_pars = {
+    'task': 'train',
+    'boosting_type': 'gbdt',
+    'objective': 'regression',
+    'metric': ['l2', 'auc'],
+    'learning_rate': 0.005,
+    'feature_fraction': 0.9,
+    'bagging_fraction': 0.7,
+    'bagging_freq': 10,
+    'verbose': 0,
+    "max_depth": 8,
+    "num_leaves": 128,  
+    "max_bin": 512,
+    "num_iterations": 100000,
+    "n_estimators": 1000
+}
 class myModel(object):
-    pass
+    def __init__(self, model_pars=None):
+        self.model_pars = model_pars
+        return (LGBMRegressor(**model_pars))
+      
 
 
 
